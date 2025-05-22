@@ -24,21 +24,6 @@ public class EitherModuleTest {
   }
 
   @Test
-  void apa() throws JsonMappingException, JsonProcessingException {
-    EitherTestModel value =
-        new ObjectMapper(new JsonFactory())
-            .registerModule(new EitherModule())
-            .readValue("{\"field\": \"some string\"}", EitherTestModel.class);
-
-    String json =
-        new ObjectMapper(new JsonFactory())
-            .registerModule(new EitherModule())
-            .writeValueAsString(new EitherTestModel(Either.left(1234)));
-    System.out.println(value);
-    System.out.println(json);
-  }
-
-  @Test
   void testWillDeserializeEitherLeft() throws JsonProcessingException {
     EitherTestModel value = mapper.readValue("{\"field\": 1234}", EitherTestModel.class);
     assertTrue(value.field.isLeft());
